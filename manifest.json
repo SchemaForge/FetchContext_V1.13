@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Fetch Context Preview Bar",
+  "version": "0.1.0",
+  "description": "Inline preview bar to submit prompts, view history, and manage Fetch Context settings.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://*/*", "http://*/*"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*",
+        "https://platform.openai.com/*",
+        "https://claude.ai/*",
+        "https://console.anthropic.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {},
+  "action": {
+    "default_title": "Fetch Context Preview Bar"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["logo.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
