@@ -120,6 +120,16 @@
     return '';
   };
 
+  // Resolve icon.png (uploaded) for the website/ribbon button
+  const getWebsiteIconUrl = () => {
+    try {
+      if (typeof chrome !== 'undefined' && chrome.runtime && typeof chrome.runtime.getURL === 'function') {
+        return chrome.runtime.getURL('icon.png');
+      }
+    } catch (_) {}
+    return '';
+  };
+
   const renderLogo = (size = 16) => {
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap w-5 h-5 text-blue-600" style="width:${size}px;height:${size}px;display:inline-block;vertical-align:middle;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`;
   };
@@ -754,13 +764,14 @@
 
     const footer = renderFooter();
 
+    const websiteIconUrl = getWebsiteIconUrl();
     const ribbon = `
       <div class="ribbon">
         <button id="ctx-collapse-toggle" title="${state.isCollapsed ? 'Expand' : 'Collapse'}">${state.isCollapsed ? `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left w-4 h-4" style="width:16px;height:16px;display:inline-block;vertical-align:middle;"><path d="m15 18-6-6 6-6"></path></svg>` : `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right w-4 h-4" style="width:16px;height:16px;display:inline-block;vertical-align:middle;"><path d="m9 18 6-6-6-6"></path></svg>`}</button>
         <button id="ctx-nav-fetch" class="${state.currentView === 'fetch' ? 'active' : ''}" title="Fetch">${renderLogo(16)}</button>
         ${state.isAuthenticated ? `<button id=\"ctx-nav-history\" class=\"${state.currentView === 'history' ? 'active' : ''}\" title=\"History\">${icon('history')}</button>` : ''}
         <button id="ctx-nav-settings" class="${state.currentView === 'settings' ? 'active' : ''}" title="Settings">${icon('settings')}</button>
-        <button id="ctx-nav-website" title="FetchContext.ai">${icon('brain')}</button>
+        <button id="ctx-nav-website" title="FetchContext.ai">${websiteIconUrl ? `<img src="${websiteIconUrl}" alt="FetchContext.ai" style="width:16px;height:16px;display:inline-block;vertical-align:middle;border-radius:4px;" />` : icon('brain')}</button>
       </div>`;
 
     const wrapperCls = `panel ${state.isFullscreen ? 'full' : ''} ${state.isCollapsed ? 'collapsed' : ''}`.trim();
