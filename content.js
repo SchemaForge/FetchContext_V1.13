@@ -803,15 +803,16 @@
     
     byId('ctx-new', false)?.addEventListener('click', () => { resetPrompt(); render(); });
 
-    // Match logo height to NEW button height when present
+    // Match logo height to 75% of NEW button height when present
     try {
       const newButton = byId('ctx-new', false);
       const logoImg = container.querySelector('#ctx-logo');
       if (newButton && logoImg) {
         const btnRect = newButton.getBoundingClientRect();
-        const targetHeight = Math.round(btnRect.height);
+        const targetHeight = Math.round(btnRect.height * 0.75);
         if (targetHeight && targetHeight > 0) {
           logoImg.style.height = targetHeight + 'px';
+          logoImg.style.width = 'auto';
         }
       }
     } catch (_) {}
