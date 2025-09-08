@@ -748,7 +748,7 @@
   const renderMain = () => {
     const logoUrl = getLogoUrl();
     const titleHtml = state.currentView === 'fetch'
-      ? (logoUrl ? `<img src="${logoUrl}" alt="Fetch Context" style="height:16px;display:inline-block;vertical-align:middle;" />` : `<span style="color:#2563eb;">${renderLogo(16)}</span> ${renderHeaderTitle()}`)
+      ? (logoUrl ? `<img id="ctx-logo" src="${logoUrl}" alt="Fetch Context" style="display:inline-block;vertical-align:middle;" />` : `<span style="color:#2563eb;">${renderLogo(16)}</span> ${renderHeaderTitle()}`)
       : `<span style="color:#2563eb;">${state.currentView === 'history' ? icon('history') : icon('settings')}</span> ${renderHeaderTitle()}`;
     const header = `
       <div class="header">
@@ -802,6 +802,19 @@
     });
     
     byId('ctx-new', false)?.addEventListener('click', () => { resetPrompt(); render(); });
+
+    // Match logo height to NEW button height when present
+    try {
+      const newButton = byId('ctx-new', false);
+      const logoImg = container.querySelector('#ctx-logo');
+      if (newButton && logoImg) {
+        const btnRect = newButton.getBoundingClientRect();
+        const targetHeight = Math.round(btnRect.height);
+        if (targetHeight && targetHeight > 0) {
+          logoImg.style.height = targetHeight + 'px';
+        }
+      }
+    } catch (_) {}
 
     // Nav
     byId('ctx-nav-fetch', false)?.addEventListener('click', () => { if (state.isCollapsed) state.isCollapsed = false; state.currentView = 'fetch'; render(); });
