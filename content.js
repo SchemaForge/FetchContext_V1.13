@@ -517,12 +517,12 @@
         <div class="section">
           <div style="text-align:center;padding:24px 0;">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key w-12 h-12 text-gray-400 mx-auto mb-4"><circle cx="7.5" cy="15.5" r="5.5"></circle><path d="m21 2-9.6 9.6"></path><path d="m15.5 7.5 3 3L22 7l-3-3"></path></svg>
-            <div class="muted" style="margin-top:4px;">Enter your Fetch Context API key</div>
+            <div class="muted" style="margin-top:4px;">Enter your Fetch Context Access Key</div>
           </div>
           <div style="margin-top:12px;">
-            <label class="muted" style="display:block;margin-bottom:6px;color:#111827;">API Key</label>
+            <label class="muted" style="display:block;margin-bottom:6px;color:#111827;">Access Key</label>
             <div class="row" style="gap:6px;">
-              <input id="ctx-api-key" class="input grow" type="password" placeholder="Enter your API key" />
+              <input id="ctx-api-key" class="input grow" type="password" placeholder="Enter your Access Key" />
               <button id="ctx-api-key-toggle" class="btn btn-outline" title="Show/Hide">Show</button>
             </div>
           </div>
@@ -534,7 +534,7 @@
           <div class="box" style="margin-top:12px;">
             <div class="box-header" style="font-weight:600;color:#111827;font-size:13px;">Get Registered</div>
             <div class="box-body">
-              <div class="muted-sm" style="margin-bottom:8px;">Don't have an API key - Visit FetchContext.ai</div>
+              <div class="muted-sm" style="margin-bottom:8px;">Don't have an Access Key - Visit FetchContext.ai</div>
               <button id="ctx-register" class="btn btn-primary" style="width:100%;background:#16a34a;">Register</button>
             </div>
           </div>
@@ -708,14 +708,14 @@
     return `
       <div class="section">
         <div style="margin-top:12px;">
-          <label class="muted" style="display:block;margin-bottom:6px;font-weight:600;color:#111827;">API Key</label>
+          <label class="muted" style="display:block;margin-bottom:6px;font-weight:600;color:#111827;">Access Key</label>
           <div style="position:relative;">
-            <input id="ctx-settings-apikey" class="input" type="password" placeholder="Enter your API key" value="${escapeAttr(state.apiKey)}" style="padding-right:30px;" />
+            <input id="ctx-settings-apikey" class="input" type="password" placeholder="Enter your Access Key" value="${escapeAttr(state.apiKey)}" style="padding-right:30px;" />
             <button id="ctx-settings-apikey-toggle" class="header-btn" title="Show/Hide" style="position:absolute; right:6px; top:50%; transform:translateY(-50%);">
               ${icon('eye')}
             </button>
           </div>
-          <div class="muted-sm" style="margin-top:4px;">Your API key is stored locally in your browser</div>
+          <div class="muted-sm" style="margin-top:4px;">Your Access Key is stored locally in your browser</div>
         </div>
 
         ${state.error ? `<div class="box" style="background:#fef2f2;border-color:#fecaca;margin-top:12px;"><div class="box-body" style="color:#991b1b;font-size:12px;">${state.error}</div></div>`: ""}
@@ -724,7 +724,7 @@
           <button id="ctx-settings-save" class="btn btn-primary grow" style="font-size:14px;">Save</button>
         </div>
         ${state.isAuthenticated ? `<div class="divider" style="margin-top:16px;"></div>
-          <button id="ctx-disconnect" class="btn" style="color:#dc2626;width:100%;background:transparent;font-size:14px;">Disconnect API Key</button>` : ''}
+          <button id="ctx-disconnect" class="btn" style="color:#dc2626;width:100%;background:transparent;font-size:14px;">Disconnect Access Key</button>` : ''}
       </div>`;
   };
 
