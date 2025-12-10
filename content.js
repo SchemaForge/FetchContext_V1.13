@@ -747,9 +747,9 @@
 
   const renderMain = () => {
     const logoUrl = getLogoUrl();
-    const titleHtml = state.currentView === 'fetch'
-      ? (logoUrl ? `<img id="ctx-logo" src="${logoUrl}" alt="Fetch Context" style="display:inline-block;vertical-align:middle;width:20px;height:20px;" />` : `<span style="color:#2563eb;">${renderLogo(16)}</span> ${renderHeaderTitle()}`)
-      : `<span style="color:#2563eb;">${state.currentView === 'history' ? icon('history') : icon('settings')}</span> ${renderHeaderTitle()}`;
+    const titleHtml = logoUrl
+      ? `<img id="ctx-logo" src="${logoUrl}" alt="Fetch Context" style="display:inline-block;vertical-align:middle;width:180px;height:auto;" />`
+      : `<span style="color:#2563eb;">${state.currentView === 'history' ? icon('history') : (state.currentView === 'settings' ? icon('settings') : renderLogo(16))}</span> ${renderHeaderTitle()}`;
     const header = `
       <div class="header">
         <div class="title">${titleHtml}</div>
